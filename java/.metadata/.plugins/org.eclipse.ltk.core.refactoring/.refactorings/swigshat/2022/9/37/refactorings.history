@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring accessors="true" comment="Delete 4 elements from project &apos;swigshat&apos;&#x0D;&#x0A;- Original project: &apos;swigshat&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     ReceiverThread.java&#x0D;&#x0A;     SenderThread.java&#x0D;&#x0A;     ServerExample4.java&#x0D;&#x0A;     SixTeam.java" description="Delete elements" element1="/src&lt;{SixTeam.java" element2="/src&lt;{SenderThread.java" element3="/src&lt;{ServerExample4.java" element4="/src&lt;{ReceiverThread.java" elements="4" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1662447832339" subPackages="false" version="1.0"/>
+</session>

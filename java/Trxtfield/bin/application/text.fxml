@@ -1,0 +1,22 @@
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane prefHeight="200" prefWidth="300" xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <top>
+        <ToolBar>
+            <items>
+                <TextField fx:id="txtField" prefWidth="240" style="-fx-cursor: red;" styleClass="clickable" stylesheets="@style.css" />
+                <Button fx:id="btn" onAction="#handleButtonActoin" prefWidth="40" />
+            </items>
+        </ToolBar>
+    </top>
+    <center>
+        <ImageView fx:id="imageView">
+            <image>
+                <Image url="@imgres.png" />
+            </image>
+        </ImageView>
+    </center>
+    <bottom>
+        <Label fx:id="resultLabel" alignment="CENTER" prefWidth="300" />
+    </bottom>
+</BorderPane>

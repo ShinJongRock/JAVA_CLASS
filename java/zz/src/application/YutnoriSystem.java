@@ -1,0 +1,107 @@
+package application;
+
+import javafx.scene.paint.Color;
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class YutnoriSystem {    // ?œ·???´ ëª¨ë¸?˜ ëª¨ë“  ? •ë³´ê? ?ˆ?Š” ìµœìƒ?œ„ ëª¨ë¸
+
+    int pieceNum;
+    int playerNum;
+    ArrayList<Player> playingPlayer;
+    Yut[] yuts = new Yut[4];
+    Board board;
+
+    YutnoriSystem(){
+        playingPlayer = new ArrayList<>();
+        board = new Board(playingPlayer);
+        for(int i = 0; i < 4; i++){
+            yuts[i] = new Yut();        // yut ì´ˆê¸°?™”
+        }
+    }
+
+    // ?”Œ? ˆ?´?–´?“¤?„ ? ?ˆ˜ ?ˆœ?œ¼ë¡? ? •? ¬. ë§ˆì?ë§‰ì— ?ˆœ?œ„ ê³„ì‚°?• ?•Œ ?‚¬?š©
+    void calcRank(){
+        Collections.sort(playingPlayer);
+    }
+
+    // ë¹½ë„, ?„, ê°?, ê²?, ?œ·, ëª¨ì˜ ê²°ê³¼ë¥? ë°˜í™˜
+    int rollYuts() {
+
+        int yutResult = 0;	                                // 1?´ë©? ?„(ë§Œì•½ ? ?´ ?ˆ?Š” ?œ·?´ë©? ë¹½ë„), 2ë©? ê°?, 3ë©? ê±?..
+        for(int i = 0; i < 4; i++){
+            yutResult += yuts[i].rollYut();                 // ?œ·?„ ê°ê° ?˜? ¸ ?œ· ê²°ê³¼ë¥? ?–»?Œ
+        }
+        if(yuts[0].status == 1 && yutResult == 1) return 5; // yut[0]?? ë¹½ë„ë¥? ?‚˜???‚´?Š” ?œ·
+        return yutResult;
+    }
+
+    // ê²Œì„?„ ?‹œ?‘?• ?•Œ ë³??ˆ˜ê°’ë“¤?? ì´ˆê¸°?™”
+    void startGame(int playerNum, int pieceNum) {
+        this.playerNum = playerNum;
+        this.pieceNum = pieceNum;
+
+        for(int i = 0; i < playerNum; i++) {
+            playingPlayer.add(new Player(pieceNum, i));     // ?”Œ? ˆ?´?–´ ?ˆ˜ë§Œí¼ arraylist ê³µê°„ ?• ?‹¹
+        }
+
+        board.addPiece(1, new Piece(0));
+        playingPlayer.get(0).addPieceOnBoard();
+    }
+
+    // ?„ ?ƒ?•œ ë§ê³¼ ?œ· ëª©ë¡?„ ?†µ?•´ ?‹œ?‘ì§?? ê³? ??ì§ì¼ ê±°ë¦¬ ê³„ì‚°
+    int switchYut(String yut){
+        int distance = 0;
+        switch(yut){
+            case "ë¹½ë„":
+                distance =  -1;
+                break;
+            case "?„":
+                distance = 1;
+                break;
+            case "ê°?":
+                distance = 2;
+                break;
+            case "ê±?":
+                distance = 3;
+                break;
+            case "?œ·":
+                distance = 4;
+                break;
+            case "ëª?":
+                distance = 5;
+                break;
+        }
+        return distance;
+    }
+
+    // ?‹¤?Œ ?”Œ? ˆ?´?–´?˜ ?„´?„ ê³„ì‚°?•˜?Š” ë©”ì†Œ?“œ
+    int nextTurn() {
+
+        int i = currentTurn();
+        int count = 1;
+        while(count < playerNum){
+            if(playingPlayer.get(i % playerNum).turn == true && playingPlayer.get((i+count) % playerNum).finish == false){
+                playingPlayer.get((i+count) % playerNum).turn = true;
+                playingPlayer.get(i % playerNum).turn = false;
+                return (i+count)% playerNum;
+            }
+            count++;
+        }
+        return i;
+    }
+
+    // ?˜„?¬ ?–´?–¤ ?”Œ? ˆ?´?–´?˜ ?„´?¸ì§? ë¦¬í„´
+    int currentTurn(){
+        for(int i = 0; i < playingPlayer.size(); i++) {
+            if(playingPlayer.get(i).turn == true)
+                return i;
+        }
+        return 0;
+    }
+
+    // ?˜„?¬ ?„´?¸ ?”Œ? ˆ?´?–´?˜ ?ƒ‰?„ ë¦¬í„´
+    Color currentColor(int turn){
+        return playingPlayer.get(turn).getColor();
+    }
+}

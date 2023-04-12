@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;standard.jar&apos; to &apos;lib&apos;&#x0D;&#x0A;- Original project: &apos;ServletTest&apos;&#x0D;&#x0A;- Destination element: &apos;lib&apos;&#x0D;&#x0A;- Original element: &apos;standard.jar&apos;" description="Copy file" element1="src/main/webapp/WEB-INF/lib/standard.jar" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1665982669995" target="/Mvc203/src/main/webapp/WEB-INF/lib" units="0" version="1.0"/>
+</session>
